@@ -5,7 +5,7 @@ SRC_DIR=src
 SRCS=$(wildcard src/*.v)
 ALL_V=$(shell find . -name *.v -type f -print)
 VERSION=0.1.0
-NAME=wincoretools
+NAME=hashsum
 
 build: $(patsubst src/%.v, $(BUILD_DIR)/%, $(SRCS))
 $(BUILD_DIR)/%: src/%.v

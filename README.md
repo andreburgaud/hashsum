@@ -130,6 +130,8 @@ For the CLI tests, follow the instructions in the next section.
 
 #### CLI Testing Environment
 
+This testing executes CLI functional tests using [pytest](https://docs.pytest.org/en/stable/) and [pytest-console-scripts](https://pypi.org/project/pytest-console-scripts/) to drive the execution of the command line tools and to validate the output or results.
+
 * Requirements: 
   * Python 3.8 or 3.9
   * PyTest
