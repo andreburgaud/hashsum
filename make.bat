@@ -1,6 +1,6 @@
 @echo off
 
-set PROJECT=WinCoreTools
+set PROJECT=HashSum
 set VERSION=0.1.0
 
 if {%1} == {} (goto :HELP)
