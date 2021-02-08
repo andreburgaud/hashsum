@@ -73,7 +73,7 @@ First you need to check out the **hashsum** repository:
 $ git clone git@github.com:andreburgaud/hashsum.git
 ```
 
-After compilation, you will need to copy the executable in a directory available in your [`PATH`](https://en.wikipedia.org/wiki/PATH_(variable)) to execute the tools from any folder.
+After compilation, make the executables generated in the `build` directory available in your [`PATH`](https://en.wikipedia.org/wiki/PATH_(variable)).
 
 #### Build on Windows
 
