@@ -1,0 +1,7 @@
+.DS_Store
+build
+dist
+tests/.pytest_cache
+tests/__pycache__
+tests/.venv
+.venv
