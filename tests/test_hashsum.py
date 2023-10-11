@@ -24,7 +24,7 @@ data_sum = [
 # Validates the result of: sha1sum some_file
 @pytest.mark.parametrize('exe,digest', data_sum, ids=idfn)
 def test_sum(script_runner, exe, digest):
-    ret = script_runner.run(f'{EXE_DIR}/{exe}', f'{DATA_DIR}/lorem_ipsum.txt')
+    ret = script_runner.run([f'{EXE_DIR}/{exe}', f'{DATA_DIR}/lorem_ipsum.txt'])
     assert ret.success
     first_line = ret.stdout.split('\n')[0]
     assert first_line == f'{digest}  {DATA_DIR}/lorem_ipsum.txt'
@@ -33,14 +33,15 @@ def test_sum(script_runner, exe, digest):
 @pytest.mark.parametrize('exe,digest', data_sum, ids=idfn)
 def test_sum_stdin(script_runner, exe, digest):
     ret = script_runner.run(f'{EXE_DIR}/{exe}', stdin=open(f'{DATA_DIR}/lorem_ipsum.txt', 'r', encoding='utf-8'))
-    #assert ret.success
+    assert ret.success
     first_line = ret.stdout.split('\n')[0]
     assert first_line == f'{digest}  -'
 
 # Validates the result of: sha1sum --binary some_file
 @pytest.mark.parametrize('exe,digest', data_sum, ids=idfn)
 def test_sum_bin(script_runner, exe, digest):
-    ret = script_runner.run(f'{EXE_DIR}/{exe}', '--binary', f'{DATA_DIR}/lorem_ipsum.txt')
+    #ret = script_runner.run(f'{EXE_DIR}/{exe}', '--binary', f'{DATA_DIR}/lorem_ipsum.txt')
+    ret = script_runner.run([f'{EXE_DIR}/{exe}', '-b', f'{DATA_DIR}/lorem_ipsum.txt'])
     assert ret.success
     first_line = ret.stdout.split('\n')[0]
     assert first_line == f'{digest} *{DATA_DIR}/lorem_ipsum.txt'
@@ -57,7 +58,8 @@ data_sum_check = [
 # Validates the result of: sha1sum --check some_file.sha1
 @pytest.mark.parametrize('exe,extension', data_sum_check, ids=idfn)
 def test_sum_check(script_runner, exe, extension):
-    ret = script_runner.run(f'{EXE_DIR}/{exe}', '--check', f'{DATA_DIR}/lorem_ipsum.txt.{extension}')
+    #ret = script_runner.run(f'{EXE_DIR}/{exe}', '--check', f'{DATA_DIR}/lorem_ipsum.txt.{extension}')
+    ret = script_runner.run([f'{EXE_DIR}/{exe}', '-c', f'{DATA_DIR}/lorem_ipsum.txt.{extension}'])
     assert ret.success
     expected = f'{DATA_DIR}/lorem_ipsum.txt: OK'
     first_line = ret.stdout.split('\n')[0]

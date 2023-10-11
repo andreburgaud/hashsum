@@ -8,8 +8,8 @@ const (
 
 // get_raw_bytes returns bytes from stdin when detecting the end of the stream
 // Ctrl+z on Windows or Ctrl+d on *Nix.
-pub fn get_raw_bytes() []byte {
-	mut bytes := []byte{}
+pub fn get_raw_bytes() []u8 {
+	mut bytes := []u8{}
 	max := 4096
 	$if windows {
 		unsafe {
@@ -27,14 +27,14 @@ pub fn get_raw_bytes() []byte {
 			return bytes
 		}
 	} $else {
-		stdin := os.open_stdin()
-		mut pos := 0
+		stdin := os.stdin()
+		mut pos := u64(0)
 		for {
 			bytes << stdin.read_bytes_at(max, pos)
 			if bytes.len < max {
 				break
 			}
-			pos += max
+			pos += u64(max)
 		}
 		return bytes
 	}

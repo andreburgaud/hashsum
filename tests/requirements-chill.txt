@@ -1,2 +1,0 @@
-pip-chill==1.0.1
-pytest-console-scripts==1.1.0

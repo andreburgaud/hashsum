@@ -8,7 +8,7 @@ import crypto.sha512
 import os
 import lib
 
-enum Hash {
+pub enum Hash {
 	md5
 	sha1
 	sha224
@@ -18,7 +18,7 @@ enum Hash {
 }
 
 fn hexsum(algo Hash, data []byte) string {
-	mut hash := []byte{}
+	mut hash := []u8{}
 	match algo {
 		.md5 { hash = md5.sum(data) }
 		.sha1 { hash = sha1.sum(data) }

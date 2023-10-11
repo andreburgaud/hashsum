@@ -7,7 +7,7 @@ fn main() {
 		name: 'sha224'
 		description: 'Calculate a message-digest fingerprint (checksum) for a file'
 		version: '0.1.0'
-		execute: fn (cmd cli.Command) ? { exit(sum.execute_bsd(cmd, sum.Hash.sha224)) }
+		execute: fn (cmd cli.Command) ! { exit(sum.execute_bsd(cmd, sum.Hash.sha224)) }
 		parent: 0
 	}
 	sum.init_bsd_flags(mut cmd)

@@ -8,13 +8,17 @@ import cli
 
 // init_flags initializes the flags of the Linux sum command
 pub fn init_flags(mut cmd &cli.Command, algo Hash) {
+	//println("init_flags")
 	check_description := 'Reads $algo sums from the FILEs and checks them'
+	//println(check_description)
 	check_flag := init_check_flag(check_description)
 	bin_flag := init_bin_flag()
 	text_flag := init_text_flag()
 	for flag in [check_flag, bin_flag, text_flag] {
 		cmd.add_flag(flag)
 	}
+	//println(cmd)
+
 }
 
 // init_check_flag initializes the check flag

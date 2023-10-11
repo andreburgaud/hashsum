@@ -30,7 +30,7 @@ pub fn is_valid(cmd_name string, path string) bool {
 // LINUX-LIKE COMMAND LINE PROCESSING
 // ==================================
 
-struct SumOptions {
+pub struct SumOptions {
 	name string     // Command name
 	files []string  // Command arguments (files)
 	algo Hash
@@ -48,6 +48,18 @@ pub fn execute(cmd cli.Command, algo Hash) int {
 		bin_flag: get_bin_flag(cmd)
 		check_flag: get_check_flag(cmd)
 	}
+	if options.check_flag {
+		result = options.process_files_check()
+	} else {
+		result = options.process_files()
+	}
+	return result
+}
+
+// execute is the entry point of the Linux-like sum command (ex: md5sum, sha1sum...)
+// TODO: continue converting in this format (replace cli with flag)
+pub fn exec(options SumOptions, algo Hash) int {
+	mut result := success
 	if options.check_flag {
 		result = options.process_files_check()
 	} else {
